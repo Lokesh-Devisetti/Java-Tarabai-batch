@@ -1,1 +1,1 @@
-# Java-Tarabai-batch
+# Java-practice-tarabai
