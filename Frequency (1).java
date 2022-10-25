@@ -1,7 +1,7 @@
 import java.util.Scanner;
 class Frequency
 {
-public static void main(String arr[])
+public static void main(String args[])
 {
 int number, count, digit, temp;
 Scanner sc=new Scanner(System.in);
