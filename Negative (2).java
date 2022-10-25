@@ -1,0 +1,20 @@
+// number is negative number or not
+//package
+import java.util.*;
+//create a main class
+class  Negative {
+  //main method
+   public static void main(String args[]) {
+     //creating an object by using scanner class
+     Scanner sc=new Scanner(System.in);
+     System.out.println("enter a number:");
+     int num=sc.nextInt();
+     //condition
+     if(num<0)
+       //print result
+     System.out.println(num+" is a negative number");
+     else 
+       System.out.println(num+" it is not a negative number");
+     
+   }
+}
