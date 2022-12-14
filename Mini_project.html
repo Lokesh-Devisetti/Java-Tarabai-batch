@@ -1,0 +1,220 @@
+<!-- Front End Foundation: Mini Project
+Arogya Hospital Information Management System
+
+Hey learner!! Remember our client Arogya Hospital, for whom we built a Java based application? They liked your work, and they are back with another project contract. This time Arogya Hospital needs some nice-looking web pages (front end) for the operators, nurses and doctors to use. Understand the requirements below and use what you learned about HTML and CSS. 
+
+Please read the description carefully before you start implementation. Based on the success of this project, Arogya will award additional contracts to bitLabs.
+
+The management system should have the following features: -
+
+• Home page
+Home page should contain Hospital logo, brief description of hospital and their mission with attractive images. 
+Also, we should have Some other options to choose like - 
+1.Medicine Record 
+2.Patient’s Registration 
+3.Patient’s Profile 
+4.Contact us
+
+• Medicine Record
+Beside Home page option we should have Medicine Entry Form. This form is used to capture the name of the medicine supplier and all the medicines supplied by them.
+In medicine entry form we should take 3 inputs that represent the “Supplier Details”
+1.Supplier ID 
+2.Supplier Name 
+3.Date and time of Supply
+
+• Right below the “Supplier Details” you should have a table, with multiple rows. Each row represents a medicine supplied by the particular Supplier.   
+1.Medicine ID 
+2.Medicine Name 
+3.Unit price 
+4.Quantity 
+5.Manufacture date
+6.Expiry Date
+And the “Submit button” at the bottom middle of the page.
+
+● Patient’s Registration 
+This page is used to register patients into the system and to admit them.
+
+Assign a unique id to each patient admitted.
+
+Add a patient’s personal details:
+Add a patient’s details to your page whenever there is a new patient admitted.
+The patient details should include his/her name, age, gender, Aadhar Card number, contact number, Emergency contact number, Complete address, etc.
+
+Guardian's Information: -
+Add a patient’s guardian’s details to your page whenever there is a new patient    admitted. The details should include his/her name, age, gender, Aadhar Card number, contact number, Complete address, etc.
+
+COVID 19: Past 1 year information: 
+In this section we will be collecting their past record related to covid. The details should include Travel info: Did He/she travel in the past 1 Month?, Vaccine Doses, Date of last dose, Date of last Covid test, If patient is showing any symptoms? etc.
+
+Insurance details: 
+We should collect their insurance details (if any) like insurance membership, Insurance number, etc. 
+
+And take “Date of admission” then “Submit Button” at the bottom of the page.
+
+● Search Patients
+This page is used to do the following:
+1.View full list of patients
+2.Search an entry of patient
+3.Recovery and Delete 
+
+View full list of patients
+The system should show the list of patients at any point of time. Basically, the system should be dynamic and a real time system. In other words, it can provide results at any point of time without any delays. For now, just provide a button to view all patients, and we can hook it to up to the backend in a later project.
+
+Search an entry of patient
+The operator must be able to search for patients using any of the following information Patient ID, Patient Name, Patient City, Patient Age. For a searching by age, provide minimum age and maximum age as search input. 
+
+Recovery and Delete
+Mark the patient recovered when he or she is fully recovered using patient’s ID as input. The system should also be able to delete the information of a patient when asked to, using patient’s ID as input. 
+ 
+• Contact us
+In this page we should include all contact details of hospitals like Address, Phone No,	Email address, Mobile No., Customer Support, Ambulance Contact No., Website, etc.
+
+If you want to add some extra features in your project then you can discuss it with your respective mentor. Your innovative ideas are very welcome.
+
+Sounds exciting? Then please go ahead and start your implement using HTML and CSS learnt in the Front-End foundation course. 
+
+Note: Create menu bar which includes Home, Medicine Record, Patient Registration, Patient Profile and contact us as a menu values. When we click on the menu option display related elements on the body part of the HTML page. Create footer and display “© All Rights Reserved by Arogya Hospital @bitLabs.in” message.
+
+All the very best and Happy learning with bitLabs!! -->
+
+
+<!DOCTYPE html>
+<html>
+    <head> 
+        <link rel="stylesheet" href="Project.css" type="text/css" />
+    </head>
+    <body>
+        <div>
+            <img src="https://demoguisrilanka.com/demosites/directory/wp-content/uploads/2021/01/arogyah.png">
+        </div>
+            <div class="navbar">
+                <a class="active" href="#">Home</a>
+            <a href="Medical_Record.html">Medical Record</a>
+            <a href="Patient Registration.html">Patient Registration</a>
+            <a href="Patient Profile.html">Patient Profile</a>
+            <a href="#">Search</a>
+            <a href="#div-contact">Contact us</a>
+        </div>
+        <div style=background-color:orange;>
+            <h1 style=text-align:center; font-family:"Times New Roman" color:white> WELCOME TO AAROGYA HOSPITALS!</h1>
+      
+            <p style=text-align:center color:white><b>We Offer Extensive Medical Procedures To Outbound And Inbound
+                Patients.</b></p>
+             <img class="rel_img"   src="data:image/jpeg;base64,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">
+             <h3>WHO WE ARE</h3>
+
+      <h2>Why Choose Aarogya Healthcare?</h2>
+
+      <p>Established by Dr Prathap C Reddy in 1995, Aarogya Healthcare has a robust presence across the healthcare
+        ecosystem. From routine wellness & preventive health care to innovative life-saving treatments and diagnostic
+        services, Aarogya Hospitals has touched more than 120 million lives from over 120 countries, offering the best
+        clinical outcomes.</p>
+
+      <h3>7,000+ Healing Hands</h3>
+
+      <p>Largest network of the world's finest and brightest medical experts who provide compassionate care using
+        outstanding expertise and advanced technology.</p>
+
+      <h3>4,000+ Pharmacies</h3>
+
+      <p>Aarogya Hospital is India's first, largest and most trusted branded pharmacy network, with over 4000 plus
+        outlets covering the entire nation</p>
+
+      <h3>Most Advanced Healthcare Technology</h3>
+
+      <p>Aarogya Hospitals has been the pioneer in bringing ground-breaking healthcare technologies to India.</p>
+
+      <h3>Best Clinical Outcomes</h3>
+
+      <p>Leveraging its vast medical expertise & technological advantage, Aarogya Hospitals has consistently delivered
+        best in class clinical outcomes.</p>
+        <img class="rel_img1" src="https://www.thoracic.org/patients/patient-resources/managing-the-icu-experience/images/structure.jpg">
+        <h3>About us..</h2>
+
+            <p>Being situated in vicinity of the Factory establishment site at Vijayawada, Aarogya hospital shall always
+              played crucial role in providing emergent medical services, and prompt medical relief in case of mass
+              causality and very sick patient. Time for transportation is saved. We will be starting full fledged Intensive
+              Care Unit facilities to treat all kinds of emergency cases</p>
+    
+            <p><b>
+    
+                Aarogya Hospitals was started in 4th April 2016 By Two Clinicions, Dr.Sumanth Moparthi & Dr.Ponnam Subba Rao
+                as an OPD Clinic with
+                20 Bedded inpatient Hospital. Within no time Due to High acceptance of people around khammam, It was
+                Expanded to 100 Bedded Hospital.
+                We Succeeded in providing Quality Health Care with Highend Equipment and expert Doctors, Rather than
+                imposing the burden of unnecessary luxurious
+                amenities over the patient. We belive in cost cutting health care.</b></p>
+    
+            <p style=line-height:1.3; font-size:2px;>Within 3 years of excellency in various departments, Aarogya hospitals
+              has served around 3lakh patients in which 45% of services are free of cost.in addition to providing medical,
+              surgical & emergency services we provide advanced teritiary health care in various specialities like
+              cardiology, urology, nephrology, neuro surgery & neurology,oncology and minimal access surgery. over the past
+              4 years arogya hospital has touched the lives of hundres of thusands of surrounding 3 districts.</p>
+            <div>
+              <h2>Our Mission is as Simple as follows..</h2>
+    
+              <ul>
+    
+    
+                <li>Patient Rights and Responsibilities: Giving you excellent health care is our mission and commitment.
+                </li>
+                <li>Our entire focus is on your health care needs. Our goal is to respect your dignity and choices. </li>
+                <li>Be assured that every patient receives equal attention and equal access to all our services. </li>
+                <li>There is no discrimination in regard to race, religion, age, sex, disability or economic status. </li>
+                <li>This listing of your rights serves to inform you of your options regarding treatment or refusal of
+                  treatment.</li>
+                <li>These rights apply to all patients.</li>
+                <img class="rel-img" style=height:50%;
+              src="https://res.cloudinary.com/dcd4s69kx/image/upload/v1637751966/82304eff4ef320eb_featured_mncmes.jpg" />
+
+        </div>
+        <h3>Locate Us..</h3>
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244184.85111042045!2d81.63506301640622!3d17.004613300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a5867bf6b091%3A0x57ff341f37ee2d0a!2sAAROGYA%20HOSPITAL!5e0!3m2!1sen!2sin!4v1638445722335!5m2!1sen!2sin"
+        width="400" height="300" style="border:0;" loading="slowly"></iframe>
+
+  </div>
+  <div id="div-contact">
+
+    <div style="width:50%; float:left;">
+      <h3 style=color:red; font-family:"caveat" font-size:13px;>For daily news updates </h3>
+      <input type="textarea" name="email" value="enter email" rows="2" cols="40" style=border:white />
+      <input type="submit" name="subscribe" value="subscribe" />
+      <br />
+      <h3>About us.</h3>
+      <pre> Arogya hospitals offers a whole new experince in heath care by combining
+        our advance state of the art facility with our commitment to provide in the
+        best quality if life to many no of our district and surrding 3 districts.</pre>
+
+    </div>
+    <div style="margin-left:50%; ">
+        <h2 style="text-align:center"; font-size:12px;>Contact Info...</h2>
+      <p> H.O. 34-8/3, Benz circle, Vijayawada, Andhra Pradesh.</p>
+      <p>B.O. 8-2-32, main road, Tiruvuru, krishna, Andhra Pradesh.</p>
+      <p>B.O. 174-89/8, Near R.T.C Complex, guntur, guntur, Andhra Pradesh.</p>
+      <p><b>Tel. phone. 08673-252103</b></p>
+      <p>Mobile: 7013840036</p>
+      <p>Send your queries through: support@aarogyahospitals.com</p>
+      <p><b>Ambulance no.</b> 9876543210</p>
+      <br />
+
+      <br />
+
+    </div>
+
+    <p style="font-size:19px; "> Â© 2021 All Rights Reserved by Aarogya Hospital || Designed by @bitLabs.in</p>
+
+  </div>
+
+
+
+</body>
+
+</html>
+
+
+        
+
+    </body>
+</html>

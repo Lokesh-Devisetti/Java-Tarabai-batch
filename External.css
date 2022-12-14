@@ -1,0 +1,20 @@
+
+            body{
+                background-color:rgb(230, 174, 20);
+            }
+            h1{
+                font-size: 50px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: rgb(20, 97, 230);
+            }
+            p{
+                font-size: 30px;
+                font-family: 'Courier New', Courier, monospace;
+                color: brown;
+                border: 10px;
+                border-style: double;
+                border-radius: 30px;
+                text-align: justify;
+                padding: 10px;
+            }
+        
