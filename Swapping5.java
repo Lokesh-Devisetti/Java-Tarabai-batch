@@ -1,5 +1,4 @@
-
- //  with return type and without parameters.
+ with return type and without parameters.
 class Swapping5 {
   static int swap(int a, int b){
   
