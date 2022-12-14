@@ -1,0 +1,33 @@
+.imze{
+    
+    background-image: url("https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/jaganath-temple.jpg");
+    background-size:cover;
+    height:100%;
+
+    text-align:center;
+}
+
+#h1{
+    
+    color:black;
+    text-shadow:3px 3px green;
+    text-align-last: center;
+    font-size:40px;
+    
+}
+
+
+.p{
+    
+    font-family: sans-serif;
+    color:black;
+    letter-spacing: 1.5;
+    
+}
+
+.button{
+    
+    background-color: orange;
+    border-radius:2px;
+    
+}

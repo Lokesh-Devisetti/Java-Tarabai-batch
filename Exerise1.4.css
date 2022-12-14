@@ -1,0 +1,17 @@
+#h1{
+    background-color:white; 
+    color:blue; 
+    font-family:"Roboto";
+    text-align:center;
+    height: 80px;
+    
+}
+
+
+.p{
+    line-height:50px;
+    color:red;
+     font-family:"caveat";
+    font-size:25px;
+    
+}
