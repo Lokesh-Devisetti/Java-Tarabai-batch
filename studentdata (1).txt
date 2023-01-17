@@ -1,0 +1,5 @@
+Ramu,60
+Kumar,56
+Rakesh,89
+Suresh,66
+lokesh,90

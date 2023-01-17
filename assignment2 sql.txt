@@ -1,0 +1,545 @@
+mysql> create table orders(ordid int,purchamt double,orddate varchar(15),custid int,salesmanid int);
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> insert into orders values(70001,150.5,"2012-10-05",3005,5002),(70009,270.65,"2012-09-10",3001,5005);
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into orders values(70002,65.26,"2012-10-05",3002,5001),(70004,110.5,"2012-08-17",3009,5003);
+Query OK, 2 rows affected (0.07 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into orders values(70007,948.5,"2012-09-10",3005,5002),(70005,2400.6,"2012-07-27",3007,5001);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
++-------+----------+------------+--------+------------+
+| ordid | purchamt | orddate    | custid | salesmanid |
++-------+----------+------------+--------+------------+
+| 70001 |    150.5 | 2012-10-05 |   3005 |       5002 |
+| 70009 |   270.65 | 2012-09-10 |   3001 |       5005 |
+| 70002 |    65.26 | 2012-10-05 |   3002 |       5001 |
+| 70004 |    110.5 | 2012-08-17 |   3009 |       5003 |
+| 70007 |    948.5 | 2012-09-10 |   3005 |       5002 |
+| 70005 |   2400.6 | 2012-07-27 |   3007 |       5001 |
++-------+----------+------------+--------+------------+
+6 rows in set (0.00 sec)
+
+
+mysql> select sum(purchamt) from orders;
++--------------------+
+| sum(purchamt)      |
++--------------------+
+| 3946.0099999999998 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(purchamt) from orders;
++-------------------+
+| avg(purchamt)     |
++-------------------+
+| 657.6683333333333 |
++-------------------+
+1 row in set (0.02 sec)
+
+
+mysql> select count(distinct(salesmanid)) from orders;
++-----------------------------+
+| count(distinct(salesmanid)) |
++-----------------------------+
+|                           4 |
++-----------------------------+
+1 row in set (0.61 sec)
+
+mysql> alter table orders add column(custname varchar(20),city varchar(15),grade int);
+Query OK, 6 rows affected (0.40 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
++-------+----------+------------+--------+------------+----------+------+-------+
+| ordid | purchamt | orddate    | custid | salesmanid | custname | city | grade |
++-------+----------+------------+--------+------------+----------+------+-------+
+| 70001 |    150.5 | 2012-10-05 |   3005 |       5002 | NULL     | NULL |  NULL |
+| 70009 |   270.65 | 2012-09-10 |   3001 |       5005 | NULL     | NULL |  NULL |
+| 70002 |    65.26 | 2012-10-05 |   3002 |       5001 | NULL     | NULL |  NULL |
+| 70004 |    110.5 | 2012-08-17 |   3009 |       5003 | NULL     | NULL |  NULL |
+| 70007 |    948.5 | 2012-09-10 |   3005 |       5002 | NULL     | NULL |  NULL |
+| 70005 |   2400.6 | 2012-07-27 |   3007 |       5001 | NULL     | NULL |  NULL |
++-------+----------+------------+--------+------------+----------+------+-------+
+6 rows in set (0.00 sec)
+
+
+mysql> alter table orders drop column custname;
+Query OK, 6 rows affected (0.37 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> alter table orders drop column city;
+Query OK, 6 rows affected (1.36 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> alter table orders drop column grade;
+Query OK, 6 rows affected (0.50 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from orders;
++-------+----------+------------+--------+------------+
+| ordid | purchamt | orddate    | custid | salesmanid |
++-------+----------+------------+--------+------------+
+| 70001 |    150.5 | 2012-10-05 |   3005 |       5002 |
+| 70009 |   270.65 | 2012-09-10 |   3001 |       5005 |
+| 70002 |    65.26 | 2012-10-05 |   3002 |       5001 |
+| 70004 |    110.5 | 2012-08-17 |   3009 |       5003 |
+| 70007 |    948.5 | 2012-09-10 |   3005 |       5002 |
+| 70005 |   2400.6 | 2012-07-27 |   3007 |       5001 |
++-------+----------+------------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> create table customer(custid int,custname varchar(18),city varchar(15),grade int,salesmanid int);
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> select * from customer;
+Empty set (0.02 sec)
+
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> desc customer;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| custid     | int(11)     | YES  |     | NULL    |       |
+| custname   | varchar(18) | YES  |     | NULL    |       |
+| city       | varchar(15) | YES  |     | NULL    |       |
+| grade      | int(11)     | YES  |     | NULL    |       |
+| salesmanid | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.32 sec)
+
+mysql> insert into customer values(3005,"lokesh","tiruvuru",100,5002),(3001,"anjali","bapatala",200,5005);
+Query OK, 2 rows affected (0.16 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into customer values(3002,"shwetha","banglore",200,5001),(3009,"amit","himachal",300,5003);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into customer values(3005,"sai","gampalagudam",300,5002),(3007,"venkat","tiruvuru",100,5001);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++--------+----------+--------------+-------+------------+
+| custid | custname | city         | grade | salesmanid |
++--------+----------+--------------+-------+------------+
+|   3005 | lokesh   | tiruvuru     |   100 |       5002 |
+|   3001 | anjali   | bapatala     |   200 |       5005 |
+|   3002 | shwetha  | banglore     |   200 |       5001 |
+|   3009 | amit     | himachal     |   300 |       5003 |
+|   3005 | sai      | gampalagudam |   300 |       5002 |
+|   3007 | venkat   | tiruvuru     |   100 |       5001 |
++--------+----------+--------------+-------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select count(*) from customer;
++----------+
+| count(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(grade) from customer;
++--------------+
+| count(grade) |
++--------------+
+|            6 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select count(all grade) from customer;
++------------------+
+| count(all grade) |
++------------------+
+|                6 |
++------------------+
+1 row in set (0.02 sec)
+
+mysql> select max(purchamt) from orders;
++---------------+
+| max(purchamt) |
++---------------+
+|        2400.6 |
++---------------+
+1 row in set (0.08 sec)
+
+mysql> select * from customer;
++--------+----------+--------------+-------+------------+
+| custid | custname | city         | grade | salesmanid |
++--------+----------+--------------+-------+------------+
+|   3005 | lokesh   | tiruvuru     |   100 |       5002 |
+|   3001 | anjali   | bapatala     |   200 |       5005 |
+|   3002 | shwetha  | banglore     |   200 |       5001 |
+|   3009 | amit     | himachal     |   300 |       5003 |
+|   3005 | sai      | gampalagudam |   300 |       5002 |
+|   3007 | venkat   | tiruvuru     |   100 |       5001 |
++--------+----------+--------------+-------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders;
++-------+----------+------------+--------+------------+
+| ordid | purchamt | orddate    | custid | salesmanid |
++-------+----------+------------+--------+------------+
+| 70001 |    150.5 | 2012-10-05 |   3005 |       5002 |
+| 70009 |   270.65 | 2012-09-10 |   3001 |       5005 |
+| 70002 |    65.26 | 2012-10-05 |   3002 |       5001 |
+| 70004 |    110.5 | 2012-08-17 |   3009 |       5003 |
+| 70007 |    948.5 | 2012-09-10 |   3005 |       5002 |
+| 70005 |   2400.6 | 2012-07-27 |   3007 |       5001 |
++-------+----------+------------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select min(purchamt) from orders;
++---------------+
+| min(purchamt) |
++---------------+
+|         65.26 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select city,max(grade) from customers;
++--------------+------------+
+| city         | max(grade) |
++--------------+------------+
+| banglore     |        200 |
+| bapatala     |        200 |
+| gampalagudam |        300 |
+| himachal     |        300 |
+| tiruvuru     |        100 |
++--------------+------------+
+5 rows in set (0.00 sec)
+
+
+mysql> select * from orders;
++-------+----------+------------+--------+------------+
+| ordid | purchamt | orddate    | custid | salesmanid |
++-------+----------+------------+--------+------------+
+| 70001 |    150.5 | 2012-10-05 |   3005 |       5002 |
+| 70009 |   270.65 | 2012-09-10 |   3001 |       5005 |
+| 70002 |    65.26 | 2012-10-05 |   3002 |       5001 |
+| 70004 |    110.5 | 2012-08-17 |   3009 |       5003 |
+| 70007 |    948.5 | 2012-09-10 |   3005 |       5002 |
+| 70005 |   2400.6 | 2012-07-27 |   3007 |       5001 |
++-------+----------+------------+--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select custid,max(purchamt) from orders group by custid;
++--------+---------------+
+| custid | max(purchamt) |
++--------+---------------+
+|   3001 |        270.65 |
+|   3002 |         65.26 |
+|   3005 |         948.5 |
+|   3007 |        2400.6 |
+|   3009 |         110.5 |
++--------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select orddate,max(purchamt) from orders group by orddate;
++------------+---------------+
+| orddate    | max(purchamt) |
++------------+---------------+
+| 2012-07-27 |        2400.6 |
+| 2012-08-17 |         110.5 |
+| 2012-09-10 |         948.5 |
+| 2012-10-05 |         150.5 |
++------------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select salesmanid , max(purchamt) from orders where orddate="2012-08-17" group by salesmanid;
++------------+---------------+
+| salesmanid | max(purchamt) |
++------------+---------------+
+|       5003 |         110.5 |
++------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select custid, orddate , max(purchamt) from orders group by custid,orddate having max(purchamt)>800;
++--------+------------+---------------+
+| custid | orddate    | max(purchamt) |
++--------+------------+---------------+
+|   3005 | 2012-09-10 |         948.5 |
+|   3007 | 2012-07-27 |        2400.6 |
++--------+------------+---------------+
+2 rows in set (0.01 sec)
+
+
+mysql> select custid, orddate , max(purchamt) from orders group by custid,orddate having max(purchamt) between 500 and 3000;
++--------+------------+---------------+
+| custid | orddate    | max(purchamt) |
++--------+------------+---------------+
+|   3005 | 2012-09-10 |         948.5 |
+|   3007 | 2012-07-27 |        2400.6 |
++--------+------------+---------------+
+2 rows in set (0.55 sec)
+
+
+mysql> select custid, orddate , max(purchamt) from orders group by custid,orddate having max(purchamt) in(100,500,800,3000);
+Empty set (0.00 sec)
+
+mysql> select custid, orddate , max(purchamt) from orders group by custid,orddate having max(purchamt) in(100,500,800,2400);
+Empty set (0.00 sec)
+
+mysql> select custid, orddate , max(purchamt) from orders group by custid,orddate having max(purchamt) in(100,500,800,2400.6);
++--------+------------+---------------+
+| custid | orddate    | max(purchamt) |
++--------+------------+---------------+
+|   3007 | 2012-07-27 |        2400.6 |
++--------+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select custid, max(purchamt) from orders where custid between 3002 and 3007 group by custid;
++--------+---------------+
+| custid | max(purchamt) |
++--------+---------------+
+|   3002 |         65.26 |
+|   3005 |         948.5 |
+|   3007 |        2400.6 |
++--------+---------------+
+3 rows in set (0.00 sec)
+
+
+mysql> select custid, max(purchamt) from orders where custid between 3002 and 3007 group by custid having max(purchamt)>1000;
++--------+---------------+
+| custid | max(purchamt) |
++--------+---------------+
+|   3007 |        2400.6 |
++--------+---------------+
+1 row in set (0.00 sec)
+mysql> select salesmanid,max(purchamt) from orders group by salesmanid having salesmanid between 5003 and 5008;
++------------+---------------+
+| salesmanid | max(purchamt) |
++------------+---------------+
+|       5003 |         110.5 |
+|       5005 |        270.65 |
++------------+---------------+
+2 rows in set (12.66 sec)
+
+mysql> select count(*) from orders where orddate="2012-08-17";
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.04 sec)
+
+
+mysql> show tables;
++--------------------+
+| Tables_in_tarabai  |
++--------------------+
+| accounts           |
+| customer           |
+| customerdetails    |
+| customers          |
+| deptdetails        |
+| orders             |
+| studentdeptdetails |
+| studentdetails     |
+| studentmarks       |
+| subjectdeptdetails |
+| transactions       |
++--------------------+
+11 rows in set (0.60 sec)
+
+mysql> select * from orders;
++-------+----------+------------+--------+------------+
+| ordid | purchamt | orddate    | custid | salesmanid |
++-------+----------+------------+--------+------------+
+| 70001 |    150.5 | 2012-10-05 |   3005 |       5002 |
+| 70009 |   270.65 | 2012-09-10 |   3001 |       5005 |
+| 70002 |    65.26 | 2012-10-05 |   3002 |       5001 |
+| 70004 |    110.5 | 2012-08-17 |   3009 |       5003 |
+| 70007 |    948.5 | 2012-09-10 |   3005 |       5002 |
+| 70005 |   2400.6 | 2012-07-27 |   3007 |       5001 |
++-------+----------+------------+--------+------------+
+6 rows in set (0.25 sec)
+
+mysql> select * from customers;
++------------+-------+-------+-----------+------------+-------+---------+
+| customerid | fname | lname | address   | city       | state | zipcode |
++------------+-------+-------+-----------+------------+-------+---------+
+|          1 | loki  | ram   | tiruvuru  | vijayawada | AP    |  521235 |
+|          2 | sai   | mani  | mylavaram | gudivada   | TS    |  521230 |
+|          1 | loki  | ram   | tiruvuru  | vijayawada | AP    |  521235 |
+|          2 | sai   | mani  | mylavaram | gudivada   | TS    |  521230 |
++------------+-------+-------+-----------+------------+-------+---------+
+4 rows in set (0.07 sec)
+
+mysql> select * from customerdetails;
++------------+-------+-------+-----------+------------+-------+---------+
+| customerid | fname | lname | address   | city       | state | zipcode |
++------------+-------+-------+-----------+------------+-------+---------+
+|          1 | loki  | ram   | tiruvuru  | vijayawada | AP    |  521235 |
+|          2 | sai   | mani  | mylavaram | gudivada   | TS    |  521230 |
++------------+-------+-------+-----------+------------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customer;
++--------+----------+--------------+-------+------------+
+| custid | custname | city         | grade | salesmanid |
++--------+----------+--------------+-------+------------+
+|   3005 | lokesh   | tiruvuru     |   100 |       5002 |
+|   3001 | anjali   | bapatala     |   200 |       5005 |
+|   3002 | shwetha  | banglore     |   200 |       5001 |
+|   3009 | amit     | himachal     |   300 |       5003 |
+|   3005 | sai      | gampalagudam |   300 |       5002 |
+|   3007 | venkat   | tiruvuru     |   100 |       5001 |
++--------+----------+--------------+-------+------------+
+6 rows in set (0.01 sec)
+
+mysql> create table salesman(salesmanid int,name varchar(18),city varchar(10),commission double);
+Query OK, 0 rows affected (24.62 sec)
+
+mysql> insert into salesman values(5001,"Saw","mym",0.15),(5001,"venk","ggm",0.13),(5002,"sari","chit",0.11),(5002,"navya","hyd",0.14),(5003,"navven","ban",0.13),(5005,"ruch","kmm",0.12);
+Query OK, 6 rows affected (0.15 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select count(*) from salesman where city is not null;
++----------+
+| count(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select orddate,salesmanid,count(*) from orders group by orddate,salesmanid;
++------------+------------+----------+
+| orddate    | salesmanid | count(*) |
++------------+------------+----------+
+| 2012-07-27 |       5001 |        1 |
+| 2012-08-17 |       5003 |        1 |
+| 2012-09-10 |       5002 |        1 |
+| 2012-09-10 |       5005 |        1 |
+| 2012-10-05 |       5001 |        1 |
+| 2012-10-05 |       5002 |        1 |
++------------+------------+----------+
+6 rows in set (0.08 sec)
+
+mysql> create table itemmast(proid int,proname varchar(18),proprice double,procom int);
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> insert into itemmast values(101,"mother board",3200.00,15),(102,"key board",450.00,16),(103,"mouse",150.00,18),(104,"harddisk",1800.00,20),(105,"printer",15000.00,25),(106,"speaker",3800.00,11);
+Query OK, 6 rows affected (0.06 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from itemmast;
++-------+--------------+----------+--------+
+| proid | proname      | proprice | procom |
++-------+--------------+----------+--------+
+|   101 | mother board |     3200 |     15 |
+|   102 | key board    |      450 |     16 |
+|   103 | mouse        |      150 |     18 |
+|   104 | harddisk     |     1800 |     20 |
+|   105 | printer      |    15000 |     25 |
+|   106 | speaker      |     3800 |     11 |
++-------+--------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select avg(proprice) as "average price" from itemmast;
++--------------------+
+| average price      |
++--------------------+
+| 4066.6666666666665 |
++--------------------+
+1 row in set (0.01 sec)
+
+
+mysql> select count(*) as "number of products"  from itemmast where proprice>=350;
++--------------------+
+| number of products |
++--------------------+
+|                  5 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(proprice) as "average price",procom as "companyid" from itemmast group by procom;
++---------------+-----------+
+| average price | companyid |
++---------------+-----------+
+|          3800 |        11 |
+|          3200 |        15 |
+|           450 |        16 |
+|           150 |        18 |
+|          1800 |        20 |
+|         15000 |        25 |
++---------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> create table empdept(deptcode int,deptname varchar(15),deptallotment int);
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> insert into empdept values(57,"it",58000),(65,"bda",50000),(85,"finance",30000),(52,"hr",55000),(25,"rd",15000),(58,"qc",25000);
+Query OK, 6 rows affected (0.06 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from empdept;
++----------+----------+---------------+
+| deptcode | deptname | deptallotment |
++----------+----------+---------------+
+|       57 | it       |         58000 |
+|       65 | bda      |         50000 |
+|       85 | finance  |         30000 |
+|       52 | hr       |         55000 |
+|       25 | rd       |         15000 |
+|       58 | qc       |         25000 |
++----------+----------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select sum(deptallotment) from empdept;
++--------------------+
+| sum(deptallotment) |
++--------------------+
+|             233000 |
++--------------------+
+1 row in set (0.06 sec)
+
+mysql> create table empdetails(empid int,empfname varchar(15),emplname varchar(18),empdept int);
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> insert into empdetails values(15501,"loki","loke",45),(15502,"seww","fsdf",52),(15503,"sads","adsad",55);
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into empdetails values(15504,"anjd","anje",15),(15505,"lkj","addsa",30),(15506,"wdwq","ewq",88);
+Query OK, 3 rows affected (0.08 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from empdetails;
++-------+----------+----------+---------+
+| empid | empfname | emplname | empdept |
++-------+----------+----------+---------+
+| 15501 | loki     | loke     |      45 |
+| 15502 | seww     | fsdf     |      52 |
+| 15503 | sads     | adsad    |      55 |
+| 15504 | anjd     | anje     |      15 |
+| 15505 | lkj      | addsa    |      30 |
+| 15506 | wdwq     | ewq      |      88 |
++-------+----------+----------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select empdept,count(*) from empdetails group by empdept;
++---------+----------+
+| empdept | count(*) |
++---------+----------+
+|      15 |        1 |
+|      30 |        1 |
+|      45 |        1 |
+|      52 |        1 |
+|      55 |        1 |
+|      88 |        1 |
++---------+----------+
+6 rows in set (0.00 sec)
+

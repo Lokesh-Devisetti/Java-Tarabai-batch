@@ -1,0 +1,1771 @@
+mysql> create table studentdetails(stuid int NOT NULL,Fname varchar(15) NOT NULL,Lname varchar(15) NOT NULL,age int NOT NULL,EmailId varchar(25) NOT NULL,gender varchar(6) NOT NULL,address varchar(25) NOT NULL,Rollno int NOT NULL);
+Query OK, 0 rows affected (0.64 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_tarabai |
++-------------------+
+| studentdetails    |
++-------------------+
+1 row in set (0.49 sec)
+
+mysql> desc studentdetails;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stuid   | int(11)     | NO   |     | NULL    |       |
+| Fname   | varchar(15) | NO   |     | NULL    |       |
+| Lname   | varchar(15) | NO   |     | NULL    |       |
+| age     | int(11)     | NO   |     | NULL    |       |
+| EmailId | varchar(25) | NO   |     | NULL    |       |
+| gender  | varchar(6)  | NO   |     | NULL    |       |
+| address | varchar(25) | NO   |     | NULL    |       |
+| Rollno  | int(11)     | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+8 rows in set (3.69 sec)
+
+mysql> create table Deptdetails(deptid int,deptName varchar(10),createDate int);
+Query OK, 0 rows affected (14.54 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_tarabai |
++-------------------+
+| deptdetails       |
+| studentdetails    |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc deptdetails;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| deptid     | int(11)     | YES  |     | NULL    |       |
+| deptName   | varchar(10) | YES  |     | NULL    |       |
+| createDate | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.11 sec)
+
+mysql> create table subjectdeptdetails(subid int,subject varchar(10),deptid int);
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> desc subjectdeptdetails;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| subid   | int(11)     | YES  |     | NULL    |       |
+| subject | varchar(10) | YES  |     | NULL    |       |
+| deptid  | int(11)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.13 sec)
+
+mysql> create table studentmarks(smid int,stuid int,subjectid int,marks int,percentage int);
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_tarabai  |
++--------------------+
+| deptdetails        |
+| studentdetails     |
+| studentmarks       |
+| subjectdeptdetails |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> create table studentdeptdetails(sdeptid int,studentid int,deptid int);
+Query OK, 0 rows affected (0.82 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_tarabai  |
++--------------------+
+| deptdetails        |
+| studentdeptdetails |
+| studentdetails     |
+| studentmarks       |
+| subjectdeptdetails |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table studentdetails modify column stuid int primary key;
+Query OK, 0 rows affected (0.54 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc studentdetails;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stuid   | int(11)     | NO   | PRI | NULL    |       |
+| Fname   | varchar(15) | NO   |     | NULL    |       |
+| Lname   | varchar(15) | NO   |     | NULL    |       |
+| age     | int(11)     | NO   |     | NULL    |       |
+| EmailId | varchar(25) | NO   |     | NULL    |       |
+| gender  | varchar(6)  | NO   |     | NULL    |       |
+| address | varchar(25) | NO   |     | NULL    |       |
+| Rollno  | int(11)     | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+8 rows in set (0.06 sec)
+
+mysql> alter table deptdetails add constraint fixed primary key (deptid,deptname);
+Query OK, 0 rows affected (0.34 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc deptdetails;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| deptid     | int(11)     | NO   | PRI | 0       |       |
+| deptName   | varchar(10) | NO   | PRI |         |       |
+| createDate | int(11)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into studentdetails values(1,"Devisetti","Lokesh",23,"manikantadevei5@gmail.com","male","tiruvuru",123),(2,"amit","sharma",24,"amit@gmail.com","male","hp",567);
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname  | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma |  24 | amit@gmail.com            | male   | hp       |    567 |
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> insert into studentdetails(stuid,fname,lname,age,emailid,gender,address,rollno) values(3,"anjali","maraka",23,"anjali@gmail.com","female","AP",789);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into studentdetails(stuid,fname,lname,age,emailid,gender,address,rollno) values(4,"shwetha","shwetha",23,"shwetha@gmail.com","female","TN",567);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into studentdetails(stuid,fname,lname,age,emailid,gender,address,rollno) values(5,"bhagya","bhagya",26,"bhagya@gmail.com","female","AP",852);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit@gmail.com            | male   | hp       |    567 |
+|     3 | anjali    | maraka  |  23 | anjali@gmail.com          | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TN       |    567 |
+|     5 | bhagya    | bhagya  |  26 | bhagya@gmail.com          | female | AP       |    852 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into deptdetails values(1,"CSE",4/5/2016);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into deptdetails values(2,"IT",8/6/2015),(3,"ECE",9/5/2021),(4,"ROBOTICS",25/6/2018),(5,"EEE",15/5/2009);
+Query OK, 4 rows affected (0.18 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM DEPTDETAILS;
++--------+----------+------------+
+| deptid | deptName | createDate |
++--------+----------+------------+
+|      1 | CSE      |          0 |
+|      2 | IT       |          0 |
+|      3 | ECE      |          0 |
+|      4 | ROBOTICS |          0 |
+|      5 | EEE      |          0 |
++--------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table deptdetails modify column createdate varchar(15);
+Query OK, 5 rows affected (0.27 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM DEPTDETAILS;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 0          |
+|      2 | IT       | 0          |
+|      3 | ECE      | 0          |
+|      4 | ROBOTICS | 0          |
+|      5 | EEE      | 0          |
++--------+----------+------------+
+5 rows in set (0.00 sec)
+
+
+mysql> truncate table deptdetails;
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> SELECT * FROM DEPTDETAILS;
+Empty set (0.00 sec)
+
+mysql> insert into deptdetails values(1,"CSE","8/5/2016"),(2,"IT","8/6/2015"),(3,"ECE","9/5/2021"),(4,"ROBOTICS","25/6/2018"),(5,"EEE","15/5/2009");
+Query OK, 5 rows affected (0.11 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM DEPTDETAILS;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 8/5/2016   |
+|      2 | IT       | 8/6/2015   |
+|      3 | ECE      | 9/5/2021   |
+|      4 | ROBOTICS | 25/6/2018  |
+|      5 | EEE      | 15/5/2009  |
++--------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into subjectdeptdetails values(1,"python",1),(2,"java",2),(3,"sql",3),(4,"html",4),(5,"css",5);
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from subjectdeptdetails;
++-------+---------+--------+
+| subid | subject | deptid |
++-------+---------+--------+
+|     1 | python  |      1 |
+|     2 | java    |      2 |
+|     3 | sql     |      3 |
+|     4 | html    |      4 |
+|     5 | css     |      5 |
++-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into studentmarks values(1,1,1,60,60),(2,2,2,58,58),(3,3,3,70,70),(4,4,4,65,65),(5,5,5,68,68);
+Query OK, 5 rows affected (0.60 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentmarks;
++------+-------+-----------+-------+------------+
+| smid | stuid | subjectid | marks | percentage |
++------+-------+-----------+-------+------------+
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    58 |         58 |
+|    3 |     3 |         3 |    70 |         70 |
+|    4 |     4 |         4 |    65 |         65 |
+|    5 |     5 |         5 |    68 |         68 |
++------+-------+-----------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into studentdeptdetails values(1,1,1),(2,2,2),(3,3,3),(4,4,4),(5,5,5);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentdeptdetails;
++---------+-----------+--------+
+| sdeptid | studentid | deptid |
++---------+-----------+--------+
+|       1 |         1 |      1 |
+|       2 |         2 |      2 |
+|       3 |         3 |      3 |
+|       4 |         4 |      4 |
+|       5 |         5 |      5 |
++---------+-----------+--------+
+5 rows in set (0.10 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit@gmail.com            | male   | hp       |    567 |
+|     3 | anjali    | maraka  |  23 | anjali@gmail.com          | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TN       |    567 |
+|     5 | bhagya    | bhagya  |  26 | bhagya@gmail.com          | female | AP       |    852 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+5 rows in set (0.10 sec)
+
+mysql> UPDATE studentdetails SET address="TS" WHERE fname="shwetha";
+Query OK, 1 row affected (0.20 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit@gmail.com            | male   | hp       |    567 |
+|     3 | anjali    | maraka  |  23 | anjali@gmail.com          | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
+|     5 | bhagya    | bhagya  |  26 | bhagya@gmail.com          | female | AP       |    852 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE studentdetails SET emailid="amit34@gmail.com",address="Himachal" WHERE fname="amit";
+Query OK, 1 row affected (0.45 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit34@gmail.com          | male   | Himachal |    567 |
+|     3 | anjali    | maraka  |  23 | anjali@gmail.com          | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
+|     5 | bhagya    | bhagya  |  26 | bhagya@gmail.com          | female | AP       |    852 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+5 rows in set (0.00 sec)
+
+mysql> update studentdetails set emailid="anjali5@gmail.com" where address="AP" and gender="female";
+Query OK, 2 rows affected (0.86 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit34@gmail.com          | male   | Himachal |    567 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
+|     5 | bhagya    | bhagya  |  26 | anjali5@gmail.com         | female | AP       |    852 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+5 rows in set (0.00 sec)
+
+
+mysql> delete from studentdetails where rollno=852;
+Query OK, 1 row affected (1.38 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit34@gmail.com          | male   | Himachal |    567 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> delete from studentdetails where rollno=567 and address="tiruvuru";
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | amit      | sharma  |  24 | amit34@gmail.com          | male   | Himachal |    567 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> delete from studentdetails where rollno=567 and gender="male";
+Query OK, 1 row affected (0.86 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from subjectdeptdetails;
++-------+---------+--------+
+| subid | subject | deptid |
++-------+---------+--------+
+|     1 | python  |      1 |
+|     2 | java    |      2 |
+|     3 | sql     |      3 |
+|     4 | html    |      4 |
+|     5 | css     |      5 |
++-------+---------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select subject from subjectdeptdetails;
++---------+
+| subject |
++---------+
+| python  |
+| java    |
+| sql     |
+| html    |
+| css     |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> select subid from subjectdeptdetails;
++-------+
+| subid |
++-------+
+|     1 |
+|     2 |
+|     3 |
+|     4 |
+|     5 |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select subid,subject from subjectdeptdetails;
++-------+---------+
+| subid | subject |
++-------+---------+
+|     1 | python  |
+|     2 | java    |
+|     3 | sql     |
+|     4 | html    |
+|     5 | css     |
++-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from subjectdeptdetails where deptid>2;
++-------+---------+--------+
+| subid | subject | deptid |
++-------+---------+--------+
+|     3 | sql     |      3 |
+|     4 | html    |      4 |
+|     5 | css     |      5 |
++-------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select subject from subjectdeptdetails where subject like "j%";
++---------+
+| subject |
++---------+
+| java    |
++---------+
+1 row in set (0.13 sec)
+
+mysql> select subject from subjectdeptdetails where subject like "%l";
++---------+
+| subject |
++---------+
+| sql     |
+| html    |
++---------+
+2 rows in set (0.03 sec)
+
+mysql> select subject from subjectdeptdetails where subject like "_t%";
++---------+
+| subject |
++---------+
+| html    |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select subject from subjectdeptdetails where subject like "c%s";
++---------+
+| subject |
++---------+
+| css     |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select subject from subjectdeptdetails where deptid in(2,3,4);
++---------+
+| subject |
++---------+
+| java    |
+| sql     |
+| html    |
++---------+
+3 rows in set (0.02 sec)
+
+mysql> select subject from subjectdeptdetails where deptid=2 or deptid=3 or deptid=4;
++---------+
+| subject |
++---------+
+| java    |
+| sql     |
+| html    |
++---------+
+3 rows in set (1.21 sec)
+
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from studentmarks;
++------+-------+-----------+-------+------------+
+| smid | stuid | subjectid | marks | percentage |
++------+-------+-----------+-------+------------+
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    58 |         58 |
+|    3 |     3 |         3 |    70 |         70 |
+|    4 |     4 |         4 |    65 |         65 |
+|    5 |     5 |         5 |    68 |         68 |
++------+-------+-----------+-------+------------+
+5 rows in set (0.01 sec)
+
+mysql> insert into studentmarks values(1,1,1,60,60);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into studentmarks values(2,2,2,65,65);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from studentmarks where not marks=60;
++------+-------+-----------+-------+------------+
+| smid | stuid | subjectid | marks | percentage |
++------+-------+-----------+-------+------------+
+|    2 |     2 |         2 |    58 |         58 |
+|    3 |     3 |         3 |    70 |         70 |
+|    4 |     4 |         4 |    65 |         65 |
+|    5 |     5 |         5 |    68 |         68 |
+|    2 |     2 |         2 |    65 |         65 |
++------+-------+-----------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select marks from studentmarks;
++-------+
+| marks |
++-------+
+|    60 |
+|    58 |
+|    70 |
+|    65 |
+|    68 |
+|    60 |
+|    65 |
++-------+
+7 rows in set (0.00 sec)
+
+mysql> select distinct marks from studentmarks;
++-------+
+| marks |
++-------+
+|    60 |
+|    58 |
+|    70 |
+|    65 |
+|    68 |
++-------+
+5 rows in set (0.12 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from studentdetails limit 3;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from studentdetails limit 2;
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname  | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     3 | anjali    | maraka |  23 | anjali5@gmail.com         | female | AP       |    789 |
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from studentmarks;
++------+-------+-----------+-------+------------+
+| smid | stuid | subjectid | marks | percentage |
++------+-------+-----------+-------+------------+
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    58 |         58 |
+|    3 |     3 |         3 |    70 |         70 |
+|    4 |     4 |         4 |    65 |         65 |
+|    5 |     5 |         5 |    68 |         68 |
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    65 |         65 |
++------+-------+-----------+-------+------------+
+7 rows in set (0.00 sec)
+
+
+mysql> select marks as student_marks from studentmarks;
++---------------+
+| student_marks |
++---------------+
+|            60 |
+|            58 |
+|            70 |
+|            65 |
+|            68 |
+|            60 |
+|            65 |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> select max(marks) as max_marks from studentmarks;
++-----------+
+| max_marks |
++-----------+
+|        70 |
++-----------+
+1 row in set (0.07 sec)
+
+mysql> select min(marks) as max_marks from studentmarks;
++-----------+
+| max_marks |
++-----------+
+|        58 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) as sum_marks from studentmarks;
++-----------+
+| sum_marks |
++-----------+
+|       446 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select count(marks) as sum_marks from studentmarks;
++-----------+
+| sum_marks |
++-----------+
+|         7 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select count(marks) as count_marks from studentmarks where marks>65;
++-------------+
+| count_marks |
++-------------+
+|           2 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from studentmarks;
++------+-------+-----------+-------+------------+
+| smid | stuid | subjectid | marks | percentage |
++------+-------+-----------+-------+------------+
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    58 |         58 |
+|    3 |     3 |         3 |    70 |         70 |
+|    4 |     4 |         4 |    65 |         65 |
+|    5 |     5 |         5 |    68 |         68 |
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    65 |         65 |
++------+-------+-----------+-------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select marks from studentmarks order by marks;
++-------+
+| marks |
++-------+
+|    58 |
+|    60 |
+|    60 |
+|    65 |
+|    65 |
+|    68 |
+|    70 |
++-------+
+7 rows in set (0.07 sec)
+
+mysql> select marks from studentmarks order by marks desc;
++-------+
+| marks |
++-------+
+|    70 |
+|    68 |
+|    65 |
+|    65 |
+|    60 |
+|    60 |
+|    58 |
++-------+
+7 rows in set (0.00 sec)
+
+mysql> select marks from studentmarks order by marks limit 3;
++-------+
+| marks |
++-------+
+|    58 |
+|    60 |
+|    60 |
++-------+
+3 rows in set (0.00 sec)
+
+==========================================================================================================
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select stuid from studentdetails;
++-------+
+| stuid |
++-------+
+|     1 |
+|     3 |
+|     4 |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into studentdetails values(2,"Devi","Lok",20,"lokidevi5@gmail.com","male","chittela",021);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select fname from studentdetails where age>20;
++-----------+
+| fname     |
++-----------+
+| Devisetti |
+| anjali    |
+| shwetha   |
++-----------+
+3 rows in set (0.00 sec)
+
+
+mysql> select fname as student_name from studentdetails where stuid<3;
++--------------+
+| student_name |
++--------------+
+| Devisetti    |
+| Devi         |
++--------------+
+2 rows in set (0.04 sec)
+
+mysql> select * from studentdetails where stuid in(1,2,7);
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname  | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | Devi      | Lok    |  20 | lokidevi5@gmail.com       | male   | chittela |     21 |
++-------+-----------+--------+-----+---------------------------+--------+----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from studentdetails;
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname     | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | Devisetti | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | Devi      | Lok     |  20 | lokidevi5@gmail.com       | male   | chittela |     21 |
+|     3 | anjali    | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha   | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+-----------+---------+-----+---------------------------+--------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> update studentdetails set fname="vijay" where stuid=1;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname   | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | vijay   | Lokesh  |  23 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | Devi    | Lok     |  20 | lokidevi5@gmail.com       | male   | chittela |     21 |
+|     3 | anjali  | maraka  |  23 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select * from deptdetails;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 8/5/2016   |
+|      2 | IT       | 8/6/2015   |
+|      3 | ECE      | 9/5/2021   |
+|      4 | ROBOTICS | 25/6/2018  |
+|      5 | EEE      | 15/5/2009  |
++--------+----------+------------+
+5 rows in set (0.02 sec)
+
+mysql> update deptdetails set deptname="vijay" where deptid=3;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from deptdetails;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 8/5/2016   |
+|      2 | IT       | 8/6/2015   |
+|      3 | vijay    | 9/5/2021   |
+|      4 | ROBOTICS | 25/6/2018  |
+|      5 | EEE      | 15/5/2009  |
++--------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update deptdetails set deptname="CSE" where deptid=3;
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from deptdetails;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 8/5/2016   |
+|      2 | IT       | 8/6/2015   |
+|      3 | CSE      | 9/5/2021   |
+|      4 | ROBOTICS | 25/6/2018  |
+|      5 | EEE      | 15/5/2009  |
++--------+----------+------------+
+5 rows in set (0.00 sec)
+mysql> update studentdetails set age=20  where stuid in(1,2,3);
+Query OK, 2 rows affected (0.21 sec)
+Rows matched: 3  Changed: 2  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname   | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | vijay   | Lokesh  |  20 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | Devi    | Lok     |  20 | lokidevi5@gmail.com       | male   | chittela |     21 |
+|     3 | anjali  | maraka  |  20 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com         | female | TS       |    567 |
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> update studentdetails set age=20 where fname like "s%";
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+| stuid | Fname   | Lname   | age | EmailId                   | gender | address  | Rollno |
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+|     1 | vijay   | Lokesh  |  20 | manikantadevei5@gmail.com | male   | tiruvuru |    123 |
+|     2 | Devi    | Lok     |  20 | lokidevi5@gmail.com       | male   | chittela |     21 |
+|     3 | anjali  | maraka  |  20 | anjali5@gmail.com         | female | AP       |    789 |
+|     4 | shwetha | shwetha |  20 | shwetha@gmail.com         | female | TS       |    567 |
++-------+---------+---------+-----+---------------------------+--------+----------+--------+
+4 rows in set (0.00 sec)
+
+
+mysql> select distinct age from studentdetails;
++-----+
+| age |
++-----+
+|  20 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select age from studentdetails where fname like "%i";
++-----+
+| age |
++-----+
+|  20 |
+|  20 |
++-----+
+2 rows in set (0.00 sec)
+
+mysql>  delete from studentdetails where age>=20;
+Query OK, 4 rows affected (0.06 sec)
+
+mysql> select * from studentdetails;
+Empty set (0.00 sec)
+
+mysql>  insert into studentdetails(stuid,fname,lname,age,emailid,gender,address,rollno) values(4,"shwetha","shwetha",23,"shwetha@gmail.com","female","TN",567);
+Query OK, 1 row affected (0.03 sec)
+
+mysql>  insert into studentdetails values(2,"loki","laki",22,"loki2@gmail.com","male","AP",123),(3,"sai","sai",28,"sai3@gmail.com","male","AP",021);
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE studentdetails SET emailid="amit34@gmail.com",age=25 WHERE stuid=3;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql>  select rollno from studentdetails order by rollno desc;
++--------+
+| rollno |
++--------+
+|    567 |
+|    123 |
+|     21 |
++--------+
+3 rows in set (0.01 sec)
+
+mysql>  select stuid from studentdetails order by stuid;
++-------+
+| stuid |
++-------+
+|     2 |
+|     3 |
+|     4 |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select stuid from studentdetails order by stuid limit 2;
++-------+
+| stuid |
++-------+
+|     2 |
+|     3 |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from studentdetails order by stuid limit 2;
++-------+-------+-------+-----+------------------+--------+---------+--------+
+| stuid | Fname | Lname | age | EmailId          | gender | address | Rollno |
++-------+-------+-------+-----+------------------+--------+---------+--------+
+|     2 | loki  | laki  |  22 | loki2@gmail.com  | male   | AP      |    123 |
+|     3 | sai   | sai   |  25 | amit34@gmail.com | male   | AP      |     21 |
++-------+-------+-------+-----+------------------+--------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from studentdetails order by fname;
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+3 rows in set (0.04 sec)
+
+mysql> select max(age) as max_age from studentdetails where age>23;
++---------+
+| max_age |
++---------+
+|      25 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) as count_age from studentdetails where age<23;
++-----------+
+| count_age |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from studentmarks;
++------+-------+-----------+-------+------------+
+| smid | stuid | subjectid | marks | percentage |
++------+-------+-----------+-------+------------+
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    58 |         58 |
+|    3 |     3 |         3 |    70 |         70 |
+|    4 |     4 |         4 |    65 |         65 |
+|    5 |     5 |         5 |    68 |         68 |
+|    1 |     1 |         1 |    60 |         60 |
+|    2 |     2 |         2 |    65 |         65 |
++------+-------+-----------+-------+------------+
+7 rows in set (0.00 sec)
+mysql> select*from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+
+mysql> insert into studentdetails values(5,"loki","laki",22,"lokesh@gmail.com","female","TN",125);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into studentdetails values(1,"shwetha","shwetha",23,"shwe@gmail.com","female","AP",86);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into studentdetails values(6,"anjali","anjali",25,"anjali@gmail.com","female","MP",186);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into studentdetails values(7,"anjali","anjali",25,"anjali@gmail.com","female","MP",190);
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select*from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+
+
+
+mysql> select address from studentdetails;
++---------+
+| address |
++---------+
+| AP      |
+| AP      |
+| AP      |
+| TN      |
+| TN      |
+| MP      |
+| MP      |
++---------+
+7 rows in set (0.00 sec)
+
+mysql> select address from studentdetails group by address;
++---------+
+| address |
++---------+
+| AP      |
+| MP      |
+| TN      |
++---------+
+3 rows in set (0.04 sec)
+
+mysql> select count(address) from studentdetails group by address;
++----------------+
+| count(address) |
++----------------+
+|              3 |
+|              2 |
+|              2 |
++----------------+
+3 rows in set (0.05 sec)
+
+mysql> select address,count(address) from studentdetails group by address;
++---------+----------------+
+| address | count(address) |
++---------+----------------+
+| AP      |              3 |
+| MP      |              2 |
+| TN      |              2 |
++---------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> select address,count(address) from studentdetails order by count(address);
++---------+----------------+
+| address | count(address) |
++---------+----------------+
+| AP      |              7 |
++---------+----------------+
+1 row in set (0.03 sec)
+
+mysql> select address,count(address) from studentdetails group by address order by count(address);
++---------+----------------+
+| address | count(address) |
++---------+----------------+
+| TN      |              2 |
+| MP      |              2 |
+| AP      |              3 |
++---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select address,count(address) from studentdetails group by address order by count(address) desc limit 3;
++---------+----------------+
+| address | count(address) |
++---------+----------------+
+| AP      |              3 |
+| TN      |              2 |
+| MP      |              2 |
++---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select address,count(address) from studentdetails group by address having count(address)>=3;
++---------+----------------+
+| address | count(address) |
++---------+----------------+
+| AP      |              3 |
++---------+----------------+
+1 row in set (0.05 sec)
+
+mysql> select gender from studentdetails;
++--------+
+| gender |
++--------+
+| female |
+| male   |
+| male   |
+| female |
+| female |
+| female |
+| female |
++--------+
+7 rows in set (0.00 sec)
+
+mysql> select gender,count(gender) from studentdetails group by gender;
++--------+---------------+
+| gender | count(gender) |
++--------+---------------+
+| female |             5 |
+| male   |             2 |
++--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> select stuid from studentdetails group by gender;
++-------+
+| stuid |
++-------+
+|     1 |
+|     2 |
++-------+
+2 rows in set (0.01 sec)
+
+mysql> select gender,count(stuid) from studentdetails group by gender;
++--------+--------------+
+| gender | count(stuid) |
++--------+--------------+
+| female |            5 |
+| male   |            2 |
++--------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select gender,max(stuid) from studentdetails group by gender;
++--------+------------+
+| gender | max(stuid) |
++--------+------------+
+| female |          7 |
+| male   |          3 |
++--------+------------+
+2 rows in set (0.03 sec)
+
+mysql> select gender,count(stuid) from studentdetails group by gender order by count(stuid) desc limit 1;
++--------+--------------+
+| gender | count(stuid) |
++--------+--------------+
+| female |            5 |
++--------+--------------+
+1 row in set (0.00 sec)
+
+mysql> alter table studentdetails add column marks int;
+Query OK, 7 rows affected (0.64 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |  NULL |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |  NULL |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |  NULL |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |  NULL |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |  NULL |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |  NULL |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |  NULL |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+7 rows in set (0.00 sec)
+
+mysql> update studentdetails set marks=70 where stuid=1;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set marks=65 where stuid=2;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set marks=68 where stuid=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set marks=75 where stuid=4;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set marks=78 where stuid=5;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set marks=72 where stuid=6;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set marks=65 where stuid=7;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |    70 |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |    68 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |    78 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |    65 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+
+
+mysql> select marks,count(stuid) from studentdetails group by marks order by count(stuid) desc limit 7;
++-------+--------------+
+| marks | count(stuid) |
++-------+--------------+
+|    65 |            2 |
+|    70 |            1 |
+|    68 |            1 |
+|    75 |            1 |
+|    78 |            1 |
+|    72 |            1 |
++-------+--------------+
+
+
+mysql> select marks,count(Fname) from studentdetails group by marks order by count(Fname) desc limit 7;
++-------+--------------+
+| marks | count(Fname) |
++-------+--------------+
+|    65 |            2 |
+|    70 |            1 |
+|    68 |            1 |
+|    75 |            1 |
+|    78 |            1 |
+|    72 |            1 |
++-------+--------------+
+
+
+mysql> select Fname,max(marks) from studentdetails group by fname;
++---------+------------+
+| Fname   | max(marks) |
++---------+------------+
+| anjali  |         72 |
+| loki    |         78 |
+| sai     |         68 |
+| shwetha |         75 |
++---------+------------+
+
+
+mysql> select Fname,sum(marks) from studentdetails group by fname;
++---------+------------+
+| Fname   | sum(marks) |
++---------+------------+
+| anjali  |        137 |
+| loki    |        143 |
+| sai     |         68 |
+| shwetha |        145 |
++---------+------------+
+
+
+mysql> select fname,max(marks) from studentdetails group by fname having sum(marks)>500;
+Empty set (0.01 sec)
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |    70 |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |    68 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |    78 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |    65 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into studentdetails values(8,"sai","sai",25,"sai@gmail.com","male","AP",258,500);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select fname,sum(marks) from studentdetails group by fname having sum(marks)>500 and fname like "s%";
++-------+------------+
+| fname | sum(marks) |
++-------+------------+
+| sai   |        568 |
++-------+------------+
+1 row in set (0.06 sec)
+
+mysql> select fname,min(marks) from studentdetails group by fname having sum(marks)>600;
+Empty set (0.01 sec)
+
+mysql> select fname,max(marks) from studentdetails group by fname having sum(marks)>500 and fname like "s%";
++-------+------------+
+| fname | max(marks) |
++-------+------------+
+| sai   |        500 |
++-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select fname,min(marks) from studentdetails group by fname having sum(marks)>600;
+Empty set (0.00 sec)
+
+mysql> select * from subjectdeptdetails;
++-------+---------+--------+
+| subid | subject | deptid |
++-------+---------+--------+
+|     1 | python  |      1 |
+|     2 | java    |      2 |
+|     3 | sql     |      3 |
+|     4 | html    |      4 |
+|     5 | css     |      5 |
++-------+---------+--------+
+5 rows in set (0.11 sec)
+
+
+mysql> select subject from subjectdeptdetails where subject like "p%" and deptid in(1,2,7);
++---------+
+| subject |
++---------+
+| python  |
++---------+
+1 row in set (0.02 sec)
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |    70 |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |    68 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |    78 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |    65 |
+|     8 | sai     | sai     |  25 | sai@gmail.com     | male   | AP      |    258 |   500 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+8 rows in set (0.00 sec)
+
+
+mysql> insert into studentdetails values(9,"kiy","kuz",21,"lkie7895","male","TS",587,651);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from studentdetails where emailid not like "%@%";
++-------+-------+-------+-----+----------+--------+---------+--------+-------+
+| stuid | Fname | Lname | age | EmailId  | gender | address | Rollno | marks |
++-------+-------+-------+-----+----------+--------+---------+--------+-------+
+|     9 | kiy   | kuz   |  21 | lkie7895 | male   | TS      |    587 |   651 |
++-------+-------+-------+-----+----------+--------+---------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> select fname,min(marks) from studentdetails group by fname having sum(marks)>600;
++-------+------------+
+| fname | min(marks) |
++-------+------------+
+| kiy   |        651 |
++-------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |    70 |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |    68 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |    78 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |    65 |
+|     8 | sai     | sai     |  25 | sai@gmail.com     | male   | AP      |    258 |   500 |
+|     9 | kiy     | kuz     |  21 | lkie7895          | male   | TS      |    587 |   651 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+9 rows in set (0.00 sec)
+
+mysql> select fname,lname from studentdetails order by fname desc;
++---------+---------+
+| fname   | lname   |
++---------+---------+
+| shwetha | shwetha |
+| shwetha | shwetha |
+| sai     | sai     |
+| sai     | sai     |
+| loki    | laki    |
+| loki    | laki    |
+| kiy     | kuz     |
+| anjali  | anjali  |
+| anjali  | anjali  |
++---------+---------+
+9 rows in set (0.00 sec)
+
+
+mysql> select gender,count(gender) as student_count from studentdetails group by gender;
++--------+---------------+
+| gender | student_count |
++--------+---------------+
+| female |             5 |
+| male   |             4 |
++--------+---------------+
+2 rows in set (0.87 sec)
+
+mysql> select count(address) as student_count from studentdetails group by address having count(address)>3;
++---------------+
+| student_count |
++---------------+
+|             4 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from studentdetails where stuid=(stuid*2);
+Empty set (0.12 sec)
+
+mysql> select * from studentdetails where stuid=(stuid%2=0);
+Empty set (0.00 sec)
+
+mysql> select * from studentdetails where stuid%2=0;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |
+|     8 | sai     | sai     |  25 | sai@gmail.com     | male   | AP      |    258 |   500 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select age from studentdetails where age>20;
++-----+
+| age |
++-----+
+|  23 |
+|  22 |
+|  25 |
+|  23 |
+|  22 |
+|  25 |
+|  25 |
+|  25 |
+|  21 |
++-----+
+9 rows in set (0.00 sec)
+
+
+mysql> select * from studentdetails where stuid%2=0 and fname like "%o%";
++-------+-------+-------+-----+-----------------+--------+---------+--------+-------+
+| stuid | Fname | Lname | age | EmailId         | gender | address | Rollno | marks |
++-------+-------+-------+-----+-----------------+--------+---------+--------+-------+
+|     2 | loki  | laki  |  22 | loki2@gmail.com | male   | AP      |    123 |    65 |
++-------+-------+-------+-----+-----------------+--------+---------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> select age-2 as age1 from studentdetails where age>20;;
++------+
+| age1 |
++------+
+|   21 |
+|   20 |
+|   23 |
+|   21 |
+|   20 |
+|   23 |
+|   23 |
+|   23 |
+|   19 |
++------+
+9 rows in set (0.19 sec)
+
+ERROR:
+No query specified
+
+mysql> select age-2 as age1 from studentdetails where age>20;
++------+
+| age1 |
++------+
+|   21 |
+|   20 |
+|   23 |
+|   21 |
+|   20 |
+|   23 |
+|   23 |
+|   23 |
+|   19 |
++------+
+9 rows in set (0.00 sec)
+
+mysql> select fname,age-2 as age1 from studentdetails where age>20;
++---------+------+
+| fname   | age1 |
++---------+------+
+| shwetha |   21 |
+| loki    |   20 |
+| sai     |   23 |
+| shwetha |   21 |
+| loki    |   20 |
+| anjali  |   23 |
+| anjali  |   23 |
+| sai     |   23 |
+| kiy     |   19 |
++---------+------+
+9 rows in set (0.00 sec)
+
+
+mysql> select concat(fname,lname) as Hi from studentdetails;
++----------------+
+| Hi             |
++----------------+
+| shwethashwetha |
+| lokilaki       |
+| saisai         |
+| shwethashwetha |
+| lokilaki       |
+| anjalianjali   |
+| anjalianjali   |
+| saisai         |
+| kiykuz         |
++----------------+
+9 rows in set (0.09 sec)
+
+mysql> select concat(fname, lname) as Hi from studentdetails;
++----------------+
+| Hi             |
++----------------+
+| shwethashwetha |
+| lokilaki       |
+| saisai         |
+| shwethashwetha |
+| lokilaki       |
+| anjalianjali   |
+| anjalianjali   |
+| saisai         |
+| kiykuz         |
++----------------+
+9 rows in set (0.00 sec)
+
+
+mysql> select concat(fname, lname,"hi") from studentdetails;
++---------------------------+
+| concat(fname, lname,"hi") |
++---------------------------+
+| shwethashwethahi          |
+| lokilakihi                |
+| saisaihi                  |
+| shwethashwethahi          |
+| lokilakihi                |
+| anjalianjalihi            |
+| anjalianjalihi            |
+| saisaihi                  |
+| kiykuzhi                  |
++---------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select concat("H i",fname, lname) from studentdetails;
++----------------------------+
+| concat("H i",fname, lname) |
++----------------------------+
+| H ishwethashwetha          |
+| H ilokilaki                |
+| H isaisai                  |
+| H ishwethashwetha          |
+| H ilokilaki                |
+| H ianjalianjali            |
+| H ianjalianjali            |
+| H isaisai                  |
+| H ikiykuz                  |
++----------------------------+
+9 rows in set (0.00 sec)
+
+mysql> select concat(" Hi ",fname, lname) from studentdetails;
++-----------------------------+
+| concat(" Hi ",fname, lname) |
++-----------------------------+
+|  Hi shwethashwetha          |
+|  Hi lokilaki                |
+|  Hi saisai                  |
+|  Hi shwethashwetha          |
+|  Hi lokilaki                |
+|  Hi anjalianjali            |
+|  Hi anjalianjali            |
+|  Hi saisai                  |
+|  Hi kiykuz                  |
++-----------------------------+
+9 rows in set (0.02 sec)
+
+mysql> select concat(" Hi ",fname, lname) as fullname from studentdetails;
++--------------------+
+| fullname           |
++--------------------+
+|  Hi shwethashwetha |
+|  Hi lokilaki       |
+|  Hi saisai         |
+|  Hi shwethashwetha |
+|  Hi lokilaki       |
+|  Hi anjalianjali   |
+|  Hi anjalianjali   |
+|  Hi saisai         |
+|  Hi kiykuz         |
++--------------------+
+9 rows in set (0.00 sec)
+
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |    70 |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |    68 |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |    78 |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |    65 |
+|     8 | sai     | sai     |  25 | sai@gmail.com     | male   | AP      |    258 |   500 |
+|     9 | kiy     | kuz     |  21 | lkie7895          | male   | TS      |    587 |   651 |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+
+9 rows in set (0.12 sec)
+
+mysql> select * from deptdetails;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 8/5/2016   |
+|      2 | IT       | 8/6/2015   |
+|      3 | CSE      | 9/5/2021   |
+|      4 | ROBOTICS | 25/6/2018  |
+|      5 | EEE      | 15/5/2009  |
++--------+----------+------------+
+5 rows in set (0.12 sec)
+
+mysql> select * from studentdeptdetails;
++---------+-----------+--------+
+| sdeptid | studentid | deptid |
++---------+-----------+--------+
+|       1 |         1 |      1 |
+|       2 |         2 |      2 |
+|       3 |         3 |      3 |
+|       4 |         4 |      4 |
+|       5 |         5 |      5 |
++---------+-----------+--------+
+5 rows in set (0.08 sec)
+mysql> show tables;
++--------------------+
+| Tables_in_tarabai  |
++--------------------+
+| customer           |
+| deptdetails        |
+| orders             |
+| studentdeptdetails |
+| studentdetails     |
+| studentmarks       |
+| subjectdeptdetails |
++--------------------+
+7 rows in set (0.09 sec)
+
+mysql> select * from  subjectdeptdetails;
++-------+---------+--------+
+| subid | subject | deptid |
++-------+---------+--------+
+|     1 | python  |      1 |
+|     2 | java    |      2 |
+|     3 | sql     |      3 |
+|     4 | html    |      4 |
+|     5 | css     |      5 |
++-------+---------+--------+
+5 rows in set (0.02 sec)
+
+
+mysql> select * from deptdetails;
++--------+----------+------------+
+| deptid | deptName | createdate |
++--------+----------+------------+
+|      1 | CSE      | 8/5/2016   |
+|      2 | IT       | 8/6/2015   |
+|      3 | CSE      | 9/5/2021   |
+|      4 | ROBOTICS | 25/6/2018  |
+|      5 | EEE      | 15/5/2009  |
++--------+----------+------------+
+5 rows in set (0.00 sec)
+mysql> alter table studentdetails add deptid int;
+Query OK, 9 rows affected (0.31 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentdetails;
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+--------+
+| stuid | Fname   | Lname   | age | EmailId           | gender | address | Rollno | marks | deptid |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+--------+
+|     1 | shwetha | shwetha |  23 | shwe@gmail.com    | female | AP      |     86 |    70 |   NULL |
+|     2 | loki    | laki    |  22 | loki2@gmail.com   | male   | AP      |    123 |    65 |   NULL |
+|     3 | sai     | sai     |  25 | amit34@gmail.com  | male   | AP      |     21 |    68 |   NULL |
+|     4 | shwetha | shwetha |  23 | shwetha@gmail.com | female | TN      |    567 |    75 |   NULL |
+|     5 | loki    | laki    |  22 | lokesh@gmail.com  | female | TN      |    125 |    78 |   NULL |
+|     6 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    186 |    72 |   NULL |
+|     7 | anjali  | anjali  |  25 | anjali@gmail.com  | female | MP      |    190 |    65 |   NULL |
+|     8 | sai     | sai     |  25 | sai@gmail.com     | male   | AP      |    258 |   500 |   NULL |
+|     9 | kiy     | kuz     |  21 | lkie7895          | male   | TS      |    587 |   651 |   NULL |
++-------+---------+---------+-----+-------------------+--------+---------+--------+-------+--------+
+9 rows in set (0.00 sec)
+
+mysql> update studentdetails set deptid=1 where stuid=1;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=2 where stuid=2;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=3 where stuid=3;
+Query OK, 1 row affected (0.34 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=4 where stuid=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=5 where stuid=5;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=1 where stuid=6;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=2 where stuid=7;
+Query OK, 1 row affected (0.19 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=2 where stuid=8;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentdetails set deptid=3 where stuid=9;
+Query OK, 1 row affected (0.12 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select studentdetails.*,deptdetails.* from studentdetails left join deptdetails on studentdetails.deptid=deptdetails.deptid where deptname="mech";
+Empty set (0.00 sec)
+
+mysql> select studentdetails.*,deptdetails.* from studentdetails left join deptdetails on studentdetails.deptid=deptdetails.deptid where deptname="it";
++-------+--------+--------+-----+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+| stuid | Fname  | Lname  | age | EmailId          | gender | address | Rollno | marks | deptid | deptid | deptName | createdate |
++-------+--------+--------+-----+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+|     2 | loki   | laki   |  22 | loki2@gmail.com  | male   | AP      |    123 |    65 |      2 |      2 | IT       | 8/6/2015   |
+|     7 | anjali | anjali |  25 | anjali@gmail.com | female | MP      |    190 |    65 |      2 |      2 | IT       | 8/6/2015   |
+|     8 | sai    | sai    |  25 | sai@gmail.com    | male   | AP      |    258 |   500 |      2 |      2 | IT       | 8/6/2015   |
++-------+--------+--------+-----+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select studentdetails.*,deptdetails.* from studentdetails right join deptdetails on studentdetails.deptid=deptdetails.deptid where deptname="it";
++-------+--------+--------+------+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+| stuid | Fname  | Lname  | age  | EmailId          | gender | address | Rollno | marks | deptid | deptid | deptName | createdate |
++-------+--------+--------+------+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+|     2 | loki   | laki   |   22 | loki2@gmail.com  | male   | AP      |    123 |    65 |      2 |      2 | IT       | 8/6/2015   |
+|     7 | anjali | anjali |   25 | anjali@gmail.com | female | MP      |    190 |    65 |      2 |      2 | IT       | 8/6/2015   |
+|     8 | sai    | sai    |   25 | sai@gmail.com    | male   | AP      |    258 |   500 |      2 |      2 | IT       | 8/6/2015   |
++-------+--------+--------+------+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+3 rows in set (0.02 sec)
+
+mysql> select studentdetails.*,deptdetails.* from studentdetails right join deptdetails on studentdetails.deptid=deptdetails.deptid where deptname="cse";
++-------+---------+---------+------+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+| stuid | Fname   | Lname   | age  | EmailId          | gender | address | Rollno | marks | deptid | deptid | deptName | createdate |
++-------+---------+---------+------+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+|     1 | shwetha | shwetha |   23 | shwe@gmail.com   | female | AP      |     86 |    70 |      1 |      1 | CSE      | 8/5/2016   |
+|     6 | anjali  | anjali  |   25 | anjali@gmail.com | female | MP      |    186 |    72 |      1 |      1 | CSE      | 8/5/2016   |
+|     3 | sai     | sai     |   25 | amit34@gmail.com | male   | AP      |     21 |    68 |      3 |      3 | CSE      | 9/5/2021   |
+|     9 | kiy     | kuz     |   21 | lkie7895         | male   | TS      |    587 |   651 |      3 |      3 | CSE      | 9/5/2021   |
++-------+---------+---------+------+------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select studentdetails.*,deptdetails.* from studentdetails right join deptdetails on studentdetails.deptid=deptdetails.deptid;
++-------+---------+---------+------+-------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+| stuid | Fname   | Lname   | age  | EmailId           | gender | address | Rollno | marks | deptid | deptid | deptName | createdate |
++-------+---------+---------+------+-------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+|     1 | shwetha | shwetha |   23 | shwe@gmail.com    | female | AP      |     86 |    70 |      1 |      1 | CSE      | 8/5/2016   |
+|     6 | anjali  | anjali  |   25 | anjali@gmail.com  | female | MP      |    186 |    72 |      1 |      1 | CSE      | 8/5/2016   |
+|     2 | loki    | laki    |   22 | loki2@gmail.com   | male   | AP      |    123 |    65 |      2 |      2 | IT       | 8/6/2015   |
+|     7 | anjali  | anjali  |   25 | anjali@gmail.com  | female | MP      |    190 |    65 |      2 |      2 | IT       | 8/6/2015   |
+|     8 | sai     | sai     |   25 | sai@gmail.com     | male   | AP      |    258 |   500 |      2 |      2 | IT       | 8/6/2015   |
+|     3 | sai     | sai     |   25 | amit34@gmail.com  | male   | AP      |     21 |    68 |      3 |      3 | CSE      | 9/5/2021   |
+|     9 | kiy     | kuz     |   21 | lkie7895          | male   | TS      |    587 |   651 |      3 |      3 | CSE      | 9/5/2021   |
+|     4 | shwetha | shwetha |   23 | shwetha@gmail.com | female | TN      |    567 |    75 |      4 |      4 | ROBOTICS | 25/6/2018  |
+|     5 | loki    | laki    |   22 | lokesh@gmail.com  | female | TN      |    125 |    78 |      5 |      5 | EEE      | 15/5/2009  |
++-------+---------+---------+------+-------------------+--------+---------+--------+-------+--------+--------+----------+------------+
+9 rows in set (0.00 sec)

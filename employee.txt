@@ -1,0 +1,3 @@
+Bhagya,25000,Developer
+Shwetha,30000,Tester
+Anjali,35000,Senior Developer
