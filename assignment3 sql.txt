@@ -1,0 +1,225 @@
+
+mysql> use tarabai;
+Database changed
+
+mysql> create table studentdetails2(stuid int,stuname varchar(15),class int,address varchar(15),contactnumber long);
+Query OK, 0 rows affected (0.71 sec)
+
+mysql> insert into studentdetails2 values(1,"john",10,"xyz",1234567890);
+Query OK, 1 row affected (0.39 sec)
+
+mysql> insert into studentdetails2 values(2,"jane",9,"abc",9502022817);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into studentdetails2 values(3,"bob",8,"def",7013840036);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from studentdetails2;
++-------+---------+-------+---------+---------------+
+| stuid | stuname | class | address | contactnumber |
++-------+---------+-------+---------+---------------+
+|     1 | john    |    10 | xyz     | 1234567890    |
+|     2 | jane    |     9 | abc     | 9502022817    |
+|     3 | bob     |     8 | def     | 7013840036    |
++-------+---------+-------+---------+---------------+
+3 rows in set (0.01 sec)
+
+
+mysql> create table studentmarks2(stuid int,sub1 int,sub2 int,sub3 int,sub4 int);
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> insert into studentmarks2 values(1,80,85,90,87),(2,89,95,80,96),(3,86,89,98,97);
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into studentdetails2 values(4,"mohit",7,"ghi",7894561300);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into studentdetails2 values(5,"loki",6,"wef",7410258963);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into studentmarks2 values(4,88,95,98,75),(5,97,95,80,86);
+Query OK, 2 rows affected (0.48 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentdetails2;
++-------+---------+-------+---------+---------------+
+| stuid | stuname | class | address | contactnumber |
++-------+---------+-------+---------+---------------+
+|     1 | john    |    10 | xyz     | 1234567890    |
+|     2 | jane    |     9 | abc     | 9502022817    |
+|     3 | bob     |     8 | def     | 7013840036    |
+|     4 | mohit   |     7 | ghi     | 7894561300    |
+|     5 | loki    |     6 | wef     | 7410258963    |
++-------+---------+-------+---------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from studentmarks2;
++-------+------+------+------+------+
+| stuid | sub1 | sub2 | sub3 | sub4 |
++-------+------+------+------+------+
+|     1 |   80 |   85 |   90 |   87 |
+|     2 |   89 |   95 |   80 |   96 |
+|     3 |   86 |   89 |   98 |   97 |
+|     4 |   88 |   95 |   98 |   75 |
+|     5 |   97 |   95 |   80 |   86 |
++-------+------+------+------+------+
+5 rows in set (0.00 sec)
+
+
+mysql> select studentdetails2.*,studentmarks2.* from studentdetails2 inner join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid;
++-------+---------+-------+---------+---------------+-------+------+------+------+------+
+| stuid | stuname | class | address | contactnumber | stuid | sub1 | sub2 | sub3 | sub4 |
++-------+---------+-------+---------+---------------+-------+------+------+------+------+
+|     1 | john    |    10 | xyz     | 1234567890    |     1 |   80 |   85 |   90 |   87 |
+|     2 | jane    |     9 | abc     | 9502022817    |     2 |   89 |   95 |   80 |   96 |
+|     3 | bob     |     8 | def     | 7013840036    |     3 |   86 |   89 |   98 |   97 |
+|     4 | mohit   |     7 | ghi     | 7894561300    |     4 |   88 |   95 |   98 |   75 |
+|     5 | loki    |     6 | wef     | 7410258963    |     5 |   97 |   95 |   80 |   86 |
++-------+---------+-------+---------+---------------+-------+------+------+------+------+
+5 rows in set (0.02 sec)
+
+
+mysql> select studentdetails2.stuname,studentdetails2.class,(studentmarks2.sub1+studentmarks2.sub2+studentmarks2.sub3+studentmarks2.sub4) as totalmarks from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid;
++---------+-------+------------+
+| stuname | class | totalmarks |
++---------+-------+------------+
+| john    |    10 |        342 |
+| jane    |     9 |        360 |
+| bob     |     8 |        370 |
+| mohit   |     7 |        356 |
+| loki    |     6 |        358 |
++---------+-------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select studentdetails2.stuname from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid where studentmarks2.sub1>=80 and studentmarks2.sub2>=80 and studentmarks2.sub3>=80 and studentmarks2.sub4>=80;
++---------+
+| stuname |
++---------+
+| john    |
+| jane    |
+| bob     |
+| loki    |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> select count(studentdetails2.stuid),((studentmarks2.sub1+studentmarks2.sub2+studentmarks2.sub3+studentmarks2.sub4)/4) as average from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid;
++------------------------------+--------------+
+| count(studentdetails2.stuid) | average      |
++------------------------------+--------------+
+|                            5 | 85.500000000 |
++------------------------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select studentdetails2.stuname from studentdetails2 left join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid where studentmarks2.stuid is null;
+Empty set (0.00 sec)
+
+mysql> insert into studentdetails2 values(null,"saadsa",5,"aed",8521364970);
+Query OK, 1 row affected (0.25 sec)
+
+mysql> insert into studentmarks2 values(null,25,89,78,98);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select studentdetails2.stuname from studentdetails2 left join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid where studentmarks2.stuid is null;
++---------+
+| stuname |
++---------+
+| saadsa  |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select studentdetails2.class,avg (studentmarks2.sub1),avg(studentmarks2.sub2),avg(studentmarks2.sub3),avg(studentmarks2.sub4) as average from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid group by studentdetails2.class;
++-------+--------------------------+-------------------------+-------------------------+---------+
+| class | avg (studentmarks2.sub1) | avg(studentmarks2.sub2) | avg(studentmarks2.sub3) | average |
++-------+--------------------------+-------------------------+-------------------------+---------+
+|     6 |                  97.0000 |                 95.0000 |                 80.0000 | 86.0000 |
+|     7 |                  88.0000 |                 95.0000 |                 98.0000 | 75.0000 |
+|     8 |                  86.0000 |                 89.0000 |                 98.0000 | 97.0000 |
+|     9 |                  89.0000 |                 95.0000 |                 80.0000 | 96.0000 |
+|    10 |                  80.0000 |                 85.0000 |                 90.0000 | 87.0000 |
++-------+--------------------------+-------------------------+-------------------------+---------+
+5 rows in set (0.04 sec)
+
+mysql> select * from studentdetails2;
++-------+---------+-------+---------+---------------+
+| stuid | stuname | class | address | contactnumber |
++-------+---------+-------+---------+---------------+
+|     1 | john    |    10 | xyz     | 1234567890    |
+|     2 | jane    |     9 | abc     | 9502022817    |
+|     3 | bob     |     8 | def     | 7013840036    |
+|     4 | mohit   |     7 | ghi     | 7894561300    |
+|     5 | loki    |     6 | wef     | 7410258963    |
+|  NULL | saadsa  |     5 | aed     | 8521364970    |
++-------+---------+-------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from studentmarks2;
++-------+------+------+------+------+
+| stuid | sub1 | sub2 | sub3 | sub4 |
++-------+------+------+------+------+
+|     1 |   80 |   85 |   90 |   87 |
+|     2 |   89 |   95 |   80 |   96 |
+|     3 |   86 |   89 |   98 |   97 |
+|     4 |   88 |   95 |   98 |   75 |
+|     5 |   97 |   95 |   80 |   86 |
+|  NULL |   25 |   89 |   78 |   98 |
++-------+------+------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> select studentdetails2.stuname, count(case when studentmarks2.sub1 is not null then 1 end)+count(case when studentmarks2.sub2 is not null then 1 end)+count(case when studentmarks2.sub3 is not null then 1 end)+count(case when studentmarks2.sub4 is not null then 1 end) as subjectappeared from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid group by studentdetails2.stuname;
++---------+-----------------+
+| stuname | subjectappeared |
++---------+-----------------+
+| bob     |               4 |
+| jane    |               4 |
+| john    |               4 |
+| loki    |               4 |
+| mohit   |               4 |
++---------+-----------------+
+5 rows in set (0.06 sec)
+
+mysql> select studentdetails2.stuname from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid where (studentmarks2.sub1 or studentmarks2.sub2 or studentmarks2.sub3 or studentmarks2.sub4)>90;
+Empty set (0.00 sec)
+
+mysql> select studentdetails2.stuname from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid where studentmarks2.sub1 or studentmarks2.sub2 or studentmarks2.sub3 or studentmarks2.sub4>90;
++---------+
+| stuname |
++---------+
+| john    |
+| jane    |
+| bob     |
+| mohit   |
+| loki    |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from studentdetails2;
++-------+---------+-------+---------+---------------+
+| stuid | stuname | class | address | contactnumber |
++-------+---------+-------+---------+---------------+
+|     1 | john    |    10 | xyz     | 1234567890    |
+|     2 | jane    |     9 | abc     | 9502022817    |
+|     3 | bob     |     8 | def     | 7013840036    |
+|     4 | mohit   |     7 | ghi     | 7894561300    |
+|     5 | loki    |     6 | wef     | 7410258963    |
+|  NULL | saadsa  |     5 | aed     | 8521364970    |
++-------+---------+-------+---------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into studentdetails2 values(6,"daes",9,"ewwda",78945623015);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into studentmarks2 values(6,85,98,78,45);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select studentdetails2.class,avg (studentmarks2.sub1),avg(studentmarks2.sub2),avg(studentmarks2.sub3),avg(studentmarks2.sub4) as average from studentdetails2 join studentmarks2 on studentdetails2.stuid=studentmarks2.stuid group by studentdetails2.class;
++-------+--------------------------+-------------------------+-------------------------+---------+
+| class | avg (studentmarks2.sub1) | avg(studentmarks2.sub2) | avg(studentmarks2.sub3) | average |
++-------+--------------------------+-------------------------+-------------------------+---------+
+|     6 |                  97.0000 |                 95.0000 |                 80.0000 | 86.0000 |
+|     7 |                  88.0000 |                 95.0000 |                 98.0000 | 75.0000 |
+|     8 |                  86.0000 |                 89.0000 |                 98.0000 | 97.0000 |
+|     9 |                  87.0000 |                 96.5000 |                 79.0000 | 70.5000 |
+|    10 |                  80.0000 |                 85.0000 |                 90.0000 | 87.0000 |
++-------+--------------------------+-------------------------+-------------------------+---------+
+5 rows in set (0.02 sec)
