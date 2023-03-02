@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:contex="https://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ https://www.springframework.org/schema/beans/spring-beans.xsd
+ https://www.springframework.org/schema/context
+ https://www.springframework.org/schema/context/spring-context.xsd">
+
+  <bean class="com.bitlabs.Entity.Student" name="student">
+     <constructor-arg name="id" value="101"/>
+     <constructor-arg name="name" value="lokesh"/>
+     <constructor-arg name="list">
+     	<list>
+     	  <value>anjali</value>
+     	  <value>shwetha</value>
+     	  <value>bhagaya</value>
+     	</list>
+     	
+     </constructor-arg>
+     <constructor-arg name="set">
+     	<set>
+     	  <value>sai</value>
+     	  <value>sai</value>
+     	  <value>sai</value>
+     	</set>
+     	
+     </constructor-arg>
+     		
+     
+      
+  </bean>
+  
+  <bean class="com.bitlabs.Entity.Amibguity" name="ambiguity">
+  
+  <constructor-arg name="a" value="15" type="int"/>
+  <constructor-arg name="b" value="25" type="int"/>
+  
+  </bean>
+
+</beans>

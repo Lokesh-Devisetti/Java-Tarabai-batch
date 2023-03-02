@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+   <bean class="com.bitlabs.Entity.Student" name="student" p:id= "201" p:name="Lokesh" />
+   <bean class="com.bitlabs.Entity.Address" name= "student_address" p:street="Near meesava" p:city="Tiruvuru"/>
+   <bean class="com.bitlabs.Entity.Book" name="book" p:id="550" p:bname="Full stack"/>
+    
+
+</beans>

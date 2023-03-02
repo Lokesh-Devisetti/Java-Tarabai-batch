@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+   <bean class="com.bitlabs.Entity.Employee" name="employee">
+   <property name="id">
+   <value>101</value></property>
+   <property name="name">
+   <value>Lokesh</value></property>
+   <property name="list">
+   <list>
+    <value>Shwetha</value> 
+   <value>Anjali</value>
+   <value>Anjali</value>
+   </list>
+  
+   
+   </property>
+   <property name="set">
+   <set>
+   <value>Amith</value>
+   <value>Vinay</value>
+   <value>Vinay</value>
+   </set>
+   
+   
+   </property>
+   <property name="map">
+   <map>
+   <entry key="java" value="2 months"></entry>
+   <entry key="HTML,CSS" value="1 month"></entry>
+   <entry key="SQL" value="15 days"></entry>
+   
+   
+   </map>
+   </property>
+   </bean>
+   <bean class="com.bitlabs.Entity.Address" name="address">
+   <property name="id">
+   <value>201</value>
+   </property>
+   <property name="city">
+   <value>Tiruvru</value></property>
+   <property name="empl">
+   <ref bean="employee"/></property>
+   </bean>
+</beans>
